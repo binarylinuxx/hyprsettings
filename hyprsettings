@@ -701,10 +701,16 @@ class HyprlandSettingsApp(Adw.Application):
         # Update current mode label
         self.current_mode_label.set_markup(f"<b>Current Mode:</b> {self.current_light_mode}")
         
-        # Update button styles
-        parent = button.get_parent()
-        for child in parent:
-            child.remove_css_class("suggested-action")
+        # Get the FlowBox parent of the button
+        flowbox = button.get_parent().get_parent()  # Button -> FlowBoxChild -> FlowBox
+        
+        # Remove highlight from all buttons
+        for flowbox_child in flowbox:
+            child_button = flowbox_child.get_child()
+            if child_button != button:  # Skip the currently selected button
+                child_button.remove_css_class("suggested-action")
+        
+        # Add highlight to selected button
         button.add_css_class("suggested-action")
         
         # Apply the settings
