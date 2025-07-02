@@ -18,22 +18,22 @@ $ make prepare
 <table>
   <tr>
     <td align="center">
-      <img src="img/desk_layout.png" width="200"/><br/>
-      <b>Image 1</b>
+      <img src="img/desk_layout.png" width="400"/><br/>
+      <b>DESKTOP</b>
     </td>
     <td align="center">
-      <img src="img/screen_layout.png" width="200"/><br/>
-      <b>Image 2</b>
+      <img src="img/screen_layout.png" width="400"/><br/>
+      <b>SCREEN</b>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="img/audiomixer_layout.png" width="200"/><br/>
-      <b>Image 3</b>
+      <img src="img/audiomixer_layout.png" width="400"/><br/>
+      <b>AUDIO</b>
     </td>
     <td align="center">
-      <img src="img/sysinfo_layout.png" width="200"/><br/>
-      <b>Image 4</b>
+      <img src="img/sysinfo_layout.png" width="400"/><br/>
+      <b>SYSINFO</b>
     </td>
   </tr>
 </table>
