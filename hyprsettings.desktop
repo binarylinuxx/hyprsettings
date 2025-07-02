@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Hyprland Settings
+Comment=Configuration tool for Hyprland desktop environment
+GenericName=Desktop Settings
+Exec=hyprsettings
+Icon=preferences-desktop
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;GTK;
+Keywords=hyprland;settings;desktop;wallpaper;audio;screen;configuration;
+StartupNotify=true
+MimeType=
+X-Desktop-File-Install-Version=0.26
