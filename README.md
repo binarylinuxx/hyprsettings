@@ -14,6 +14,11 @@ $ make prepare
 # sudo make install
 ```
 
+# Arch based
+```
+$ makepkg -si
+```
+
 # LAYOUTS OVERVIEW
 <table>
   <tr>
