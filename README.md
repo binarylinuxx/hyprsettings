@@ -1,6 +1,6 @@
 # HYPRSETTINGS
 A simple Control Panel designed for Hyprland. This project is for my own dotfiles but is open for everyone.
-
+to use in they projects
 # OVERVIEW
 This program is helpful for managing screen brightness, wallpaper, audio, and for fun, system information.
 
