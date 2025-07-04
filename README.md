@@ -1,14 +1,14 @@
 # HYPRSETTINGS
-a simple Control Panel designed for hyprland as well this project are for my own dotfiles but is opened for everyone
+A simple Control Panel designed for Hyprland. This project is for my own dotfiles but is open for everyone.
 
 # OVERVIEW
-This program helpfull to manage screen light wallpaper audio and for fun sysinfo
+This program is helpful for managing screen brightness, wallpaper, audio, and for fun, system information.
 
 # INSTALL
 >[!NOTE]
-> GIT version currently the most stable due to young age of project so if you want most new 
-> bugfixes for now 
-> in your best interest Clone the  REPO 
+> The GIT version is currently the most stable due to the young age of the project, so if you want the newest
+> bugfixes for now,
+> it's in your best interest to clone the REPO
 > and install with *make*
 
 1)
@@ -19,7 +19,6 @@ $ make prepare
 ```
 # sudo make install
 ```
-
 # Arch based
 ```
 $ makepkg -si
@@ -50,15 +49,16 @@ $ makepkg -si
 </table>
 
 ## CONTRIBUTE
-Fork the repo and then do your changes and then create PULL Request. 
+Fork the repo, make your changes, and then create a PULL Request.
 
-**Rules For Pull Request:** 
-1) describe what you added or changed.
-2) Provide a Screenshots or video record to demonstrate changes.
-3) Test it for yourself before doing Pull Request.
+**Rules For Pull Requests:**
+1) Describe what you added or changed.
+2) Provide screenshots or video recordings to demonstrate changes.
+3) Test it yourself before creating a Pull Request.
 
-Or Simply Do Issue with bug report
-Any Help and support Would be pleased.
+Or simply create an Issue with a bug report.
+
+Any help and support would be appreciated.
 
 # Credits For:
-[iwnuplylo](https://github.com/IwnuplyNotTyan) -> Arch Linux Package 
+[iwnuplylo](https://github.com/IwnuplyNotTyan) -> Arch Linux Package
