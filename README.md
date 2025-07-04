@@ -70,3 +70,6 @@ Maintaining is also appreciated as support and distributing of the project to in
 
 # Credits For:
 [iwnuplylo](https://github.com/IwnuplyNotTyan) -> Arch Linux Package
+
+# Stars
+[![Stargazers over time](https://starchart.cc/binarylinuxx/hyprsettings.svg?variant=dark)](https://starchart.cc/binarylinuxx/hyprsettings)
