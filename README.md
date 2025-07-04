@@ -6,7 +6,9 @@ This program helpfull to manage screen light wallpaper audio and for fun sysinfo
 
 # INSTALL
 >[!NOTE]
- GIT version currently the most stable due to young age of project so if you want most new > bugfixes for now in your best interest Clone the  REPO 
+> GIT version currently the most stable due to young age of project so if you want most new 
+> bugfixes for now 
+> in your best interest Clone the  REPO 
 
 and install with *make*
 
