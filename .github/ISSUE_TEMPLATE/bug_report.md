@@ -22,8 +22,9 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Environment(not important but helpful if problem related to OS):**
-- OS: [e.g. Arch Linux]
+**Environment And your current distro (not important but helpful if problem related to OS):**
+- Arch?
+- Void?
 - HYPRSETTINGS version: [e.g. git-commit-hash or release version]
 
 **Additional context**

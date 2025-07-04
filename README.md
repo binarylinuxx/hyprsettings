@@ -1,6 +1,6 @@
 # HYPRSETTINGS
-A simple Control Panel designed for Hyprland. This project is for my own dotfiles but is open for everyone.
-to use in they projects
+A simple Control Panel designed for Hyprland. This project is for my own dotfiles but is open for everyone to use in their projects.
+
 # OVERVIEW
 This program is helpful for managing screen brightness, wallpaper, audio, and for fun, system information.
 
@@ -56,9 +56,17 @@ Fork the repo, make your changes, and then create a PULL Request.
 2) Provide screenshots or video recordings to demonstrate changes.
 3) Test it yourself before creating a Pull Request.
 
-Or simply create an Issue with a bug report.
+Or if you want simply create an Issue with a bug report.
 
 Any help and support would be appreciated.
+
+# Maintaining
+If you would like to share info that you've become a Maintainer or ask questions about the project, here are ways to contact me:
+
+[My Gmail](mailto:nrw58886@gmail.com)
+[Telegram](https://t.me/Binarnik_Linux)
+
+Maintaining is also appreciated as support and distributing of the project to increase popularity.
 
 # Credits For:
 [iwnuplylo](https://github.com/IwnuplyNotTyan) -> Arch Linux Package
