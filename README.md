@@ -61,7 +61,7 @@ Or if you want simply create an Issue with a bug report.
 Any help and support would be appreciated.
 
 # Maintaining
-If you would like to share info that you've become a Maintainer or ask questions about the project, here are ways to contact me:
+If you would like to share info that you've become a Maintainer and leave yourself in Credits tab, or ask questions about the project, here are ways to contact me:
 
 [My Gmail](mailto:nrw58886@gmail.com)
 [Telegram](https://t.me/Binarnik_Linux)
