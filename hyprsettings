@@ -41,16 +41,16 @@ class HyprlandSettingsApp(Adw.Application):
         }
 
     def get_system_info(self):
-        """Collect various system information"""
-        info = {
-            "os": self.get_os_info(),
-            "cpu": self.get_cpu_info(),
-            "memory": self.get_memory_info(),
-            "disk": self.get_disk_info(),
-            "gpu": self.get_gpu_info(),
-            "hyprland": self.get_hyprland_info()
-        }
-        return info
+            """Collect various system information"""
+            info = {
+                "os": self.get_os_info(),
+                "cpu": self.get_cpu_info(),
+                "memory": self.get_memory_info(),
+                "disk": self.get_disk_info(),
+                "gpu": self.get_gpu_info(),
+                "wm": self.get_wm_info()  # Changed from "hyprland" to "wm"
+            }
+            return info
     
     def get_os_info(self):
         """Get OS information"""
@@ -113,65 +113,158 @@ class HyprlandSettingsApp(Adw.Application):
         except:
             return "Unknown GPU"
     
-    def get_hyprland_info(self):
-                """Get Hyprland version information"""
-                try:
-                    # First try hyprctl version
-                    try:
-                        result = subprocess.run(["hyprctl", "version"], 
-                                              capture_output=True, text=True, check=True)
-                        version_output = result.stdout
-                        
-                        # Try to extract version from various possible formats
-                        if "Hyprland" in version_output:
-                            # Format: "Hyprland, version v0.40.0"
-                            match = re.search(r'Hyprland.*version\s+v?([\d.]+)', version_output)
-                            if match:
-                                return f"v{match.group(1)}"
-                        
-                        # Alternative format: "tag: v0.49.0"
-                        match = re.search(r'tag:\s+v?([\d.]+)', version_output)
+    def get_wm_info(self):
+        """Get Window Manager information from environment variables"""
+        try:
+            # Check XDG_CURRENT_DESKTOP first (most reliable)
+            xdg_desktop = os.environ.get('XDG_CURRENT_DESKTOP', '').strip()
+            
+            # Check other relevant environment variables
+            desktop_session = os.environ.get('DESKTOP_SESSION', '').strip()
+            session_desktop = os.environ.get('XDG_SESSION_DESKTOP', '').strip()
+            wayland_display = os.environ.get('WAYLAND_DISPLAY', '').strip()
+            display = os.environ.get('DISPLAY', '').strip()
+            
+            # Detect session type
+            session_type = os.environ.get('XDG_SESSION_TYPE', '').strip()
+            if not session_type:
+                if wayland_display:
+                    session_type = "wayland"
+                elif display:
+                    session_type = "x11"
+                else:
+                    session_type = "unknown"
+            
+            # Determine WM/DE from available info
+            wm_name = "Unknown WM"
+            
+            if xdg_desktop:
+                # Handle multiple desktops (some distros set multiple values)
+                desktop_list = [d.strip().lower() for d in xdg_desktop.split(':')]
+                primary_desktop = desktop_list[0] if desktop_list else ""
+                
+                # Map known desktop environments
+                desktop_mapping = {
+                    'hyprland': 'Hyprland',
+                    'sway': 'Sway', 
+                    'i3': 'i3',
+                    'bspwm': 'bspwm',
+                    'openbox': 'Openbox',
+                    'dwm': 'dwm',
+                    'awesome': 'Awesome',
+                    'xmonad': 'XMonad',
+                    'qtile': 'Qtile',
+                    'herbstluftwm': 'herbstluftwm',
+                    'kde': 'KDE Plasma',
+                    'gnome': 'GNOME',
+                    'xfce': 'XFCE',
+                    'mate': 'MATE',
+                    'cinnamon': 'Cinnamon',
+                    'lxde': 'LXDE',
+                    'lxqt': 'LXQt',
+                    'budgie': 'Budgie',
+                    'unity': 'Unity'
+                }
+                
+                wm_name = desktop_mapping.get(primary_desktop, xdg_desktop.title())
+            
+            elif desktop_session:
+                wm_name = desktop_session.title()
+            elif session_desktop:
+                wm_name = session_desktop.title()
+            
+            # Try to get version info for specific WMs
+            version_info = self.get_wm_version(wm_name.lower())
+            
+            # Format final string
+            if version_info:
+                return f"{wm_name} {version_info} ({session_type})"
+            else:
+                return f"{wm_name} ({session_type})"
+                
+        except Exception as e:
+            print(f"Error getting WM info: {e}")
+            return "Unknown WM (error getting info)"
+    
+    def get_wm_version(self, wm_name):
+        """Get version information for specific window managers"""
+        try:
+            version_commands = {
+                'hyprland': ['hyprctl', 'version'],
+                'sway': ['sway', '--version'],
+                'i3': ['i3', '--version'],
+                'bspwm': ['bspwm', '-v'],
+                'awesome': ['awesome', '--version'],
+                'dwm': ['dwm', '-v'],  # Note: dwm might not have version flag
+                'openbox': ['openbox', '--version'],
+                'qtile': ['qtile', '--version'],
+            }
+            
+            if wm_name in version_commands:
+                cmd = version_commands[wm_name]
+                if shutil.which(cmd[0]):  # Check if command exists
+                    result = subprocess.run(cmd, capture_output=True, text=True, 
+                                          check=True, timeout=5)
+                    
+                    # Parse version from output
+                    version_output = result.stdout.strip()
+                    
+                    # Common version patterns
+                    version_patterns = [
+                        r'version\s+v?(\d+\.\d+(?:\.\d+)?)',  # "version v1.2.3"
+                        r'v?(\d+\.\d+(?:\.\d+)?)',             # "v1.2.3" or "1.2.3"
+                        r'(\d+\.\d+(?:\.\d+)?)',               # Just numbers
+                    ]
+                    
+                    for pattern in version_patterns:
+                        match = re.search(pattern, version_output, re.IGNORECASE)
                         if match:
                             return f"v{match.group(1)}"
+                    
+                    # If no version pattern matched, return first line
+                    first_line = version_output.split('\n')[0]
+                    if first_line and len(first_line) < 100:  # Reasonable length
+                        return first_line
                         
-                        # Fallback to just showing the first line
-                        return version_output.splitlines()[0].strip()
-                        
-                    except (subprocess.CalledProcessError, FileNotFoundError):
-                        # If hyprctl fails, try checking the package version
-                        try:
-                            # For Void Linux (your OS)
-                            result = subprocess.run(["xbps-query", "-Rs", "hyprland"],
-                                                  capture_output=True, text=True, check=True)
-                            pkg_info = result.stdout
-                            match = re.search(r'hyprland-([\d.]+)', pkg_info)
-                            if match:
-                                return f"v{match.group(1)} (via xbps)"
-                            
-                            # For Arch Linux
-                            result = subprocess.run(["pacman", "-Qi", "hyprland"],
-                                                  capture_output=True, text=True, check=True)
-                            pkg_info = result.stdout
-                            match = re.search(r'Version\s*:\s*([\d.]+)', pkg_info)
-                            if match:
-                                return f"v{match.group(1)} (via pacman)"
-                            
-                            # For Debian/Ubuntu
-                            result = subprocess.run(["apt", "list", "--installed", "hyprland"],
-                                                  capture_output=True, text=True, check=True)
-                            pkg_info = result.stdout
-                            match = re.search(r'hyprland/(?:\w+\s+)?([\d.]+)', pkg_info)
-                            if match:
-                                return f"v{match.group(1)} (via apt)"
-                            
-                        except (subprocess.CalledProcessError, FileNotFoundError):
-                            pass
-                        
-                        return "Hyprland (version unknown)"
-                        
-                except Exception as e:
-                    print(f"Error getting Hyprland version: {e}")
-                    return "Hyprland (error getting version)"
+            # Fallback: try package manager queries
+            return self.get_wm_version_from_package(wm_name)
+            
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
+            return self.get_wm_version_from_package(wm_name)
+        except Exception as e:
+            print(f"Error getting {wm_name} version: {e}")
+            return None
+    
+    def get_wm_version_from_package(self, wm_name):
+        """Try to get version from package manager"""
+        try:
+            package_managers = [
+                # Void Linux
+                (['xbps-query', '-Rs', wm_name], r'{}-([\d.]+)'.format(wm_name)),
+                # Arch Linux  
+                (['pacman', '-Qi', wm_name], r'Version\s*:\s*([\d.]+)'),
+                # Debian/Ubuntu
+                (['dpkg', '-l', wm_name], r'ii\s+{}\s+([\d.]+)'.format(wm_name)),
+                # Fedora/CentOS
+                (['rpm', '-q', wm_name], r'{}-(\d+[\d.]+)'.format(wm_name)),
+            ]
+            
+            for cmd, pattern in package_managers:
+                if shutil.which(cmd[0]):
+                    try:
+                        result = subprocess.run(cmd, capture_output=True, text=True, 
+                                              check=True, timeout=5)
+                        match = re.search(pattern, result.stdout)
+                        if match:
+                            return f"v{match.group(1)} (pkg)"
+                    except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+                        continue
+            
+            return None
+            
+        except Exception as e:
+            print(f"Error getting package version for {wm_name}: {e}")
+            return None
         
     def load_config(self):
         """Load configuration from config.ini"""
@@ -554,12 +647,12 @@ class HyprlandSettingsApp(Adw.Application):
             info_text += f"<b>Memory:</b> {info['memory']}\n\n"
             info_text += f"<b>Disk:</b> {info['disk']}\n\n"
             info_text += f"<b>GPU:</b> {info['gpu']}\n\n"
-            info_text += f"<b>Hyprland:</b> {info['hyprland']}"
+            info_text += f"<b>WM:</b> {info['wm']}"  # Changed from "Hyprland" to "WM"
             
             self.sysinfo_label.set_markup(info_text)
         except Exception as e:
             self.sysinfo_label.set_text(f"Error getting system info: {str(e)}")
-    
+                
     def update_volume_status_label(self):
         """Update the volume status label"""
         mute_status = " Muted" if self.is_muted else " Unmuted"
