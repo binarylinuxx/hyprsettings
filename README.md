@@ -5,9 +5,10 @@ a simple Control Panel designed for hyprland as well this project are for my own
 This program helpfull to manage screen light wallpaper audio and for fun sysinfo
 
 # INSTALL
-![note]
-GIT version currently the most stable due to young age of project so if you want most new bugfixes for now in your best interest Clone the REPO 
-and install with '''**make**'''
+>[!NOTE]
+>GIT version currently the most stable due to young >age of project so if you want most new bugfixes >for now in your best interest Clone the REPO 
+
+and install with *make*
 1)
 ```
 $ make prepare
