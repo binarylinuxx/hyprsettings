@@ -61,4 +61,4 @@ Or Simply Do Issue with bug report
 Any Help and support Would be pleased.
 
 # Credits For:
-(iwnuplylo)[https://github.com/IwnuplyNotTyan] -> Arch Linux Package 
+[iwnuplylo](https://github.com/IwnuplyNotTyan) -> Arch Linux Package 
