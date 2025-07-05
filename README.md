@@ -72,6 +72,4 @@ Maintaining is also appreciated as support and distributing of the project to in
 [iwnuplylo](https://github.com/IwnuplyNotTyan) -> Arch Linux Package
 
 # Stars
-                        
-## Stargazers over time
 [![Stargazers over time](https://starchart.cc/binarylinuxx/hyprsettings.svg?background=%231d1d1d&axis=%23ffffff&line=%23ff2525)](https://starchart.cc/binarylinuxx/hyprsettings)
