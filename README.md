@@ -5,6 +5,13 @@ A simple Control Panel designed for Hyprland. This project is for my own dotfile
 This program is helpful for managing screen brightness, wallpaper, audio, and for fun, system information.
 
 # INSTALL
+
+# DEPENDS
+- python 3.11+
+- python Gobject
+- gtk4 
+- Adwita Theme As default(or you may force it use your prefered GTK by modifying Source Code.)
+
 >[!NOTE]
 > The GIT version is currently the most stable due to the young age of the project, so if you want the newest
 > bugfixes for now,
