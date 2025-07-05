@@ -6,17 +6,19 @@ This program is helpful for managing screen brightness, wallpaper, audio, and fo
 
 # INSTALL
 
-# DEPENDS
-- python 3.11+
-- python Gobject
-- gtk4 
-- Adwita Theme As default(or you may force it use your prefered GTK by modifying Source Code.)
-
 >[!NOTE]
 > The GIT version is currently the most stable due to the young age of the project, so if you want the newest
 > bugfixes for now,
 > it's in your best interest to clone the REPO
 > and install with *make*
+
+# DEPENDS
+- python 3.11+
+- python Gobject
+- gtk4 not later
+- Adwita Theme As default(or you may force it use your prefered GTK by modifying Source Code.)
+
+after install required depends process with:
 
 1)
 ```
