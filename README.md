@@ -17,20 +17,31 @@ This program is helpful for managing screen brightness, wallpaper, audio, and fo
 - python Gobject
 - gtk4 not later
 - Adwita Theme As default(or you may force it use your prefered GTK by modifying Source Code.)
+- matugen for color generation
+- swaybg wallpaper backend
 
 after install required depends process with:
 
 1)
 ```
-$ make prepare
+git clone https://github.com/binarylinuxx
 ```
 2)
+```
+$ make prepare
+```
+3)
 ```
 # sudo make install
 ```
 # Arch based
 ```
 $ makepkg -si
+```
+
+# INSTALL SCRIPT(For void,fedora,arch)
+```
+chmod +x install.sh && ./install.sh
 ```
 
 # LAYOUTS OVERVIEW
