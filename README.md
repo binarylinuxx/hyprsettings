@@ -2,7 +2,7 @@
 A simple Control Panel designed for Hyprland. This project is for my own dotfiles but is open for everyone to use in their projects.
 
 # OVERVIEW
-This program is helpful for managing screen brightness, wallpaper, audio, and for fun, system information.
+This program is helpful for managing screen light, wallpaper, audio, and for fun, system information.
 
 # INSTALL
 
@@ -78,6 +78,27 @@ sudo python setup.py install
     </td>
   </tr>
 </table>
+
+# DESK_LAYOUT
+- change wallpaper 
+- generate scheme with [Matugen](https://github.com/InioX/matugen).
+- backend [Swaybg](https://github.com/swaywm/swaybg).
+
+# SCREEN_LAYOUT
+- Chose pressets as: Default,night light, candle light, etc..
+- play with gamma and temperature to make what seems fine for you.
+
+# AUDIO_LAYOUT
+- mute change volume level
+- using pamixer allowing use Pipewire or Pulseaudio wathever you have installed
+
+# SYSINFO_LAYOUT
+- OS NAME
+- CPU NAME
+- MEMORY(RAM)
+- disk capcity and free space in %
+- GPU INFO
+- WM NAME
 
 ## CONTRIBUTE
 Fork the repo, make your changes, and then create a PULL Request.

@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="hyprsettings",
-    version="1.0.0",
+    version="0.2.1",
     description="GTK4/Libadwaita settings manager for Hyprland",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
