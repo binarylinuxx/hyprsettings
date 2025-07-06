@@ -44,6 +44,17 @@ $ makepkg -si
 chmod +x install.sh && ./install.sh
 ```
 
+# Manual Via setup.py
+**prebuild:**
+```
+python setup.py build
+```
+
+**install:**
+```
+sudo python setup.py install
+```
+
 # LAYOUTS OVERVIEW
 <table>
   <tr>
