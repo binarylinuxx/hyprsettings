@@ -87,6 +87,7 @@ sudo python setup.py install
 # SCREEN_LAYOUT
 - Chose pressets as: Default,night light, candle light, etc..
 - play with gamma and temperature to make what seems fine for you.
+- hyprsunset for screen light modes
 
 # AUDIO_LAYOUT
 - mute change volume level
@@ -122,6 +123,11 @@ Maintaining is also appreciated as support and distributing of the project to in
 
 # Credits For:
 [iwnuplylo](https://github.com/IwnuplyNotTyan) -> Arch Linux Package
+
+# TO-DO
+- allow change brightness of screen(currently app handle only with light GAMMA and TEMPERATURE) []
+- BLUETHOOTH Control []
+- microphone control [] 
 
 # Stars
 [![Stargazers over time](https://starchart.cc/binarylinuxx/hyprsettings.svg?background=%231d1d1d&axis=%23ffffff&line=%23ff2525)](https://starchart.cc/binarylinuxx/hyprsettings)
